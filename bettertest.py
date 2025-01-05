@@ -61,10 +61,10 @@ def fast_loading_screen():
 # Function to show the main menu logo with blue and white mix
 def show_main_menu_logo():
     logo_text = r'''
-    __         __  __                                
+    __         __  __                                 
    / /_  ___  / /_/ /____  _________ ___  ____ _____ 
   / __ \/ _ \/ __/ __/ _ \/ ___/ __ `__ \/ __ `/ __ \
- / /_/ /  __/ /_/ /_/  __/ /  / / / / / / /_/ / /_/ /
+ / /_/ /  __/ /_/ /_/  __/ /  / / / / / / /_/ / /_/ / 
 /_.___/\___/\__/\__/\___/_/  /_/ /_/ /_/\__,_/ .___/ 
                                             /_/           '''
     clear_screen()
@@ -98,7 +98,7 @@ def run_scan(command, ip=None):
                 print(Fore.BLUE + "Scan Completed Successfully.")
                 print(output)
 
-                # Ask the user if they want to save the results
+                # Save the packet data to a file
                 save_results = input(Fore.BLUE + "Would you like to save the results of the scan and the IP? (yes/no): ").strip().lower()
 
                 if save_results == "yes":
@@ -243,8 +243,8 @@ def exiting_loading_screen():
     loading_text = '''
     __                                             
    / /_  __  _____     ____  __  ______________  __
-  / __ \/ / / / _ \   / __ \/ / / / ___/ ___/ / / /
- / /_/ / /_/ /  __/  / /_/ / /_/ (__  |__  ) /_/ / 
+  / __ \/ / / / _ \   / __ \/ / / / ___/ ___/ / / / 
+ / /_/ / /_/ /  __/  / /_/ / /_/ (__  |__  ) /_/ /  
 /_.___/\__, /\___/  / .___/\__,_/____/____/\__, / 
       /____/       /_/                    /____/ '''
     # Fast printing of each line with a short delay and alternating colors
@@ -253,10 +253,9 @@ def exiting_loading_screen():
             print(Fore.BLUE + line)  # Blue for even lines
         else:
             print(Fore.WHITE + line)  # White for odd lines
-        time.sleep(0.4)  # Short delay (0.1 seconds per line)
+        time.sleep(0.1)  # Short delay (0.1 seconds per line)
     
     # Display a final "Exiting..." message with a blue background and white text
-    
     print(Fore.BLUE + Fore.WHITE + "aint go no bitches...\n")
     time.sleep(1)  # Wait for a second before program exit
     print("just joking")  # Final message
@@ -323,20 +322,22 @@ def show_sslscan_commands():
     ]
     show_submenu(ssl_commands)
 
-# Main menu function
+# Main menu function with options
 def main_menu():
-    global exit_program
-    while not exit_program:
-        clear_screen()
+    while True:
         show_main_menu_logo()
-        print(Fore.BLUE + "Welcome to the Nmap & SSLScan Tool!")
+        print(Fore.BLUE +        "V 0.2 biskit@ ")
+        print(Fore.WHITE +"Press Ctrl+C To Exit Scans And Return To Main Menu" )
         print(Fore.BLUE + "1. Start Nmap Scan")
         print(Fore.BLUE + "2. Run SSLScan")
         print(Fore.BLUE + "3. View All Nmap Commands")
         print(Fore.BLUE + "4. View OS Scan Commands")
         print(Fore.BLUE + "5. View NSE Script Commands")
         print(Fore.BLUE + "6. View Firewall Scan Commands")
-        print(Fore.BLUE + "7. Exit")
+        print(Fore.BLUE + "7. Scan Multiple IPs (CIDR)")
+        print(Fore.BLUE + "8. Exit Program")
+        
+
         choice = input(Fore.BLUE + "Enter your choice: ").strip()
 
         if choice == '1':
@@ -352,9 +353,12 @@ def main_menu():
         elif choice == '6':
             show_firewall_scan_commands()
         elif choice == '7':
+            scan_ip_0_24()
+        elif choice == '8':
             exiting_loading_screen()
         else:
             print(Fore.RED + "Invalid choice. Please try again.")
+            time.sleep(1)  # Delay to let user see the message
 
 if __name__ == "__main__":
     main_menu()
