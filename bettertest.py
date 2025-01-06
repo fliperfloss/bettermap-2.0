@@ -42,7 +42,7 @@ def fast_loading_screen():
         __              __   _                ____                               __      
   _____/ /_  ___  _____/ /__(_)___  ____ _   / __/___  _____   ____  ____  _____/ /______
  / ___/ __ \/ _ \/ ___/ //_/ / __ \/ __ `/  / /_/ __ \/ ___/  / __ \/ __ \/ ___/ __/ ___/
-/ /__/ / / /  __/ /__/ ,< / / / / / /_/ /  / __/ /_/ / /     / /_/ / /_/ / /  / /_(__  ) 
+ / /__/ / / /  __/ /__/ ,< / / / / / /_/ /  / __/ /_/ / /     / /_/ / /_/ / /  / /_(__  ) 
 \___/_/ /_/\___/\___/_/|_/_/_/ /_/\__, /  /_/  \____/_/     / .___/\____/_/   \__/____/  
                                  /____/                    /_/                              
                                               
@@ -325,7 +325,8 @@ def show_sslscan_commands():
 # Main menu function with options
 def main_menu():
     while True:
-        show_main_menu_logo()
+        show_main_menu_logo()   
+        print("Manual Scan is Broken fixing later...")
         print(Fore.BLUE +        "V 0.2 biskit@ ")
         print(Fore.WHITE +"Press Ctrl+C To Exit Scans And Return To Main Menu" )
         print(Fore.BLUE + "1. Start Nmap Scan")
@@ -358,7 +359,7 @@ def main_menu():
             exiting_loading_screen()
         else:
             print(Fore.RED + "Invalid choice. Please try again.")
-            time.sleep(1)  # Delay to let user see the message
 
+# Run the main menu
 if __name__ == "__main__":
     main_menu()
